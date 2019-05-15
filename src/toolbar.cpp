@@ -1336,9 +1336,14 @@ ocpnToolBarSimple *ocpnFloatingToolbarDialog::CreateMyToolbar()
 
     CheckAndAddPlugInTool( tb );
     tipString = _("Options");
-    if( _toolbarConfigMenuUtil( ID_SETTINGS, tipString ) )
+	if (_toolbarConfigMenuUtil(ID_SETTINGS, tipString))
+	{
+		//wxImage p_w_picpath(wxT("E:/shouye.png"), wxBITMAP_TYPE_PNG);
+		//wxBitmap bitmap(p_w_picpath);
+		//tb->AddTool(ID_SETTINGS, _T("settings"),bitmap, tipString, wxITEM_NORMAL);
         tb->AddTool( ID_SETTINGS, _T("settings"),
             style->GetToolIcon( _T("settings"), TOOLICON_NORMAL ), tipString, wxITEM_NORMAL );
+	}
 
     CheckAndAddPlugInTool( tb );
     bool gs = false;

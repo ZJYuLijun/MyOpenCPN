@@ -3116,7 +3116,7 @@ void MyFrame::SetAndApplyColorScheme( ColorScheme cs )
     ApplyGlobalColorSchemetoStatusBar();
 
     UpdateAllToolbars( cs );
-
+	//更改海图阴暗模式
     if(g_MainToolbar){
         if(g_MainToolbar->GetColorScheme() != cs){
             
@@ -9970,7 +9970,7 @@ void MyFrame::RequestNewMasterToolbar(bool bforcenew)
                                                        wxPoint( -1, -1/*g_maintoolbar_x, g_maintoolbar_y*/ ), wxTB_VERTICAL, g_toolbar_scalefactor );
         g_MainToolbar->SetGrabberEnable( false );
         g_MainToolbar->SetCornerRadius( 5 );
-        g_MainToolbar->SetBackGroundColorString( _T("GREY3")  );
+        g_MainToolbar->SetBackGroundColorString( _T("GREY")  );
         g_MainToolbar->SetToolbarHideMethod( TOOLBAR_HIDE_TO_FIRST_TOOL );
         g_MainToolbar->SetToolConfigString(g_toolbarConfig);
         g_MainToolbar->EnableRolloverBitmaps( false );
@@ -10044,16 +10044,21 @@ ocpnToolBarSimple *MyFrame::CreateMasterToolbar()
 
     ocpnStyle::Style* style = g_StyleManager->GetCurrentStyle();
 
-    ToolbarItemContainer *tic= new ToolbarItemContainer( ID_MASTERTOGGLE,
-                                                         style->GetToolIcon( _T("MUI_menu"), TOOLICON_NORMAL),
-                                                         wxITEM_NORMAL, _("Hide Toolbar"), _T("MUI_menu"));
+	ToolbarItemContainer *tic = new ToolbarItemContainer(ID_MASTERTOGGLE,
+		style->GetToolIcon(_T("MUI_menu"), TOOLICON_NORMAL),
+		wxITEM_NORMAL, _("Hide Toolbar"), _T("MUI_menu"));
     tic->m_bRequired = true;
 
     g_MainToolbar->AddToolItem(tic);
 
-    tic= new ToolbarItemContainer( ID_SETTINGS,
+	wxImage p_w_picpath(wxT("E:/shouye.png"), wxBITMAP_TYPE_PNG);
+	wxBitmap bitmap(p_w_picpath);
+	tic = new ToolbarItemContainer(ID_SETTINGS, bitmap, wxITEM_NORMAL, _("Options"), _T("MUI_sets"));
+
+/*   tic= new ToolbarItemContainer( ID_SETTINGS,
                                    style->GetToolIcon( _T("MUI_settings"), TOOLICON_NORMAL),
-                                   wxITEM_NORMAL, _("Options"), _T("MUI_settings"));
+                                   wxITEM_NORMAL, _("Options"), _T("MUI_settings"));*/
+
     g_MainToolbar->AddToolItem(tic);
     
     tic= new ToolbarItemContainer( ID_MENU_ROUTE_NEW,

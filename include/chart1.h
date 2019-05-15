@@ -124,6 +124,8 @@ enum
     ID_TBSTATBOX,
     ID_MASTERTOGGLE,
 
+	ID_SETTINGS2,
+
     ID_PLUGIN_BASE // This MUST be the last item in the enum
 };
 
